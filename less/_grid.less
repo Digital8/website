@@ -1,0 +1,18 @@
+/* grid system */
+
+.row {
+    max-width: 1600px;
+    margin: 0 auto;
+    .clearfix;
+    .transition(width, 0.15s);
+}
+.column(@span: 1, @padding: 20px){
+    float: left;
+    width: 33.3333333 * @span * 1%;
+    padding: @padding;
+}
+.no-column(@padding: 20px) {
+    float: none;
+    width: auto;
+    padding: @padding;
+}
