@@ -1,13 +1,16 @@
 /* @group mixins */
 
 /* testing */
-.test-border-1 {
+.test-border-1,
+.test1 {
 	border: 1px solid fuchsia !important;
 }
-.test-border-2 {
+.test-border-2,
+.test2 {
 	border: 1px solid aqua !important;
 }
-.test-border-3 {
+.test-border-3,
+.test3 {
 	border: 1px solid lime !important;
 }
 
@@ -19,6 +22,14 @@
 	box-shadow: @arguments;
 	-moz-box-shadow: @arguments;
 	-webkit-box-shadow: @arguments;
+}
+
+/* rotation */
+.rotate(@degrees: 90){
+	-webkit-transform: rotate(@degrees);
+	-moz-transform: rotate(@degrees);
+	-o-transform: rotate(@degrees);
+	writing-mode: lr-tb;
 }
 
 /* border radius */
