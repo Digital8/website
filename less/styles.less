@@ -53,6 +53,7 @@ h1 {
 		@color: #555;
 		.light;
 		color: @color;
+		letter-spacing: 0;
 		
 		.text-shadow(~"0px 1px 0px @{color-shadow}, 0px 2px 0px @{color-shadow}, 0px 3px 0px @{color-shadow}, 0px 4px 0px @{color-shadow}, 0px 5px 0px @{color-shadow}, 0px 6px 0px @{color-shadow}, 0px 6px 0px @{color-shadow}, 0px 7px 0px @{color-shadow}, 0px 11px 8px rgba(0,0,0,0.5)");
 	}
@@ -142,7 +143,8 @@ body {
 .page {
 	position: relative;
 	width: 100%;
-	height: 100%;
+	padding-top: 70%;
+	//height: 150%;
 	
 	.content {
 		position: absolute;
@@ -178,29 +180,49 @@ body {
 
 #about {
 	background: #222;
+	background-size: 100% 100%;
 	color: #CCC;
 	
 	.content {
-		padding: 15% 45% 0 25%;
+		padding: 6% 55% 0 15%;
 	}
 	
 	h1 {
 		position: absolute;
-		left: 0%;
-		top: 45%;
+		left: -7%;
+		top: 41%;
 		.rotate(-90deg);
 	}
 	
 	a {
 		color: #FFF;
 	}
+	
+	.item {
+		position: absolute;
+		top: 0;
+		z-index: 0;
+		width: 100%;
+		height: 100%;
+		
+		&.item-ipad {
+			background: url(../images/about/ipad.png) no-repeat fixed 95% 110%;
+			background-size: 60% auto;
+		}
+		
+		&.item-pencil {
+			background: url(../images/about/pencil.png) no-repeat fixed 95% -200%;
+			background-size: 24% auto;
+		}
+	}
 }
 
 #team {
-	background: #F9F9F9 url(../images/welcome-bg.jpg) no-repeat center center;
-	background-size: 100% 100%;
+	background: #222;
+	color: #CCC;
 	
-	.content {
+	h1 {
+		text-align: center;
 	}
 	
 	#profiles-label {
@@ -210,11 +232,12 @@ body {
 	}
 	
 	.profile-chooser {
-		width: 70%;
-		background: rgba(150,150,150,0.4);
-		.rounded(5px);
-		.box-shadow(~"inset 0px 5px 10px rgba(0,0,0,0.5)");
-		margin: 10px auto;
+		position: relative;
+		width: 100%;
+		background: rgba(255,255,255,0.9);
+		.box-shadow(~"inset 0px 30px 25px -25px rgba(0,0,0,0.4), inset 0px -30px 25px -25px rgba(0,0,0,0.4)");
+		margin: 0 auto 2%;
+		overflow: hidden;
 		
 		> table {
 			width: 100%;
@@ -228,42 +251,119 @@ body {
 				background: none;
 				border: none;
 				
-				+ td {
-					border-top: 1px dashed #999;
+				&:nth-child(2n) {
+					background: rgba(255,255,255,0.5);
 				}
-			}
-		}
-		
-		ul {
-			width: 100%;
-			margin-left: -8.3333333333%;
-			
-			li {
-				.inline-block;
-				white-space: nowrap;
-				width: 16.666666667%;
 				
-				> div {
-					.test1;
+				ul {
+					width: 100%;
+					margin-left: -8.3333333333%;
+					
+					li {
+						.inline-block;
+						white-space: nowrap;
+						width: 16.666666667%;
+						background-size: 100% 100% !important;
+						
+						img {
+							width: 100%;
+						}
+					}
+				}
+				
+				.middle-line {
+					position: absolute;
+					z-index: 1;
+					top: 0;
+					left: 50%;
+					bottom: 0;
+					width: 0;
+					border-left: 1px dashed #999;
 				}
 			}
-		}
-		
-		.middle-line {
-			position: absolute;
-			z-index: 1;
-			top: 0;
-			left: 50%;
-			bottom: 0;
-			width: 0;
-			border-left: 1px dashed #999;
-		}
-		
-		img {
-			width: 100%;
 		}
 	}
+}
 
+#contact {
+	background: #222 url(../images/contact/left-diagonal.png) no-repeat top left;
+	background-size: 100% 100%;
+	overflow: hidden;
+	padding-top: 60%;
+	
+	.content {
+		padding: 9% 40% 0 10%;
+		.rotate(-7deg);
+		width: 97%;
+	}
+	
+	#contact-form {
+		position: absolute;
+		left: 65%;
+		top: 30%;
+		.rotate(22deg);
+		width: 42%;
+		
+		.input-row {
+			.clearfix;
+			height: 3em;
+			margin: 0 0 0.5em;
+			
+			&.textarea-row {
+				height: 6em;
+			}
+			
+			label,
+			.text-input {
+				display: block;
+				float: left;
+				font-family: sans-serif;
+				font-size: 1em;
+				line-height: 3em;
+				height: 100%;
+				padding: 0 1em;
+			}
+			
+			label {
+				text-transform: uppercase;
+				font-weight: bold;
+				color: #999;
+				width: 30%;
+				overflow: hidden;
+				background: #000;
+			}
+			
+			.text-input {
+				display: block;
+				width: 70%;
+				border: none;
+				background: #333;
+				outline: none;
+				color: #CCC;
+				padding-right: 24%;
+			}
+		}
+		
+		.button {
+			@color: #FFF;
+			@color-shadow: darken(@color, 20%);
+			float: right;
+			width: auto;
+			padding-right: 24%;
+			height: 1.5em;
+			border: none;
+			outline: none;
+			background: none;
+			font-size: 3em;
+			text-transform: uppercase;
+			.extrabold;
+			letter-spacing: -0.04em;
+			color: @color;
+			text-align: center;
+			
+			.text-shadow(~"0px 1px 0px @{color-shadow}, 0px 2px 0px @{color-shadow}, 0px 3px 0px @{color-shadow}, 0px 4px 0px @{color-shadow}, 0px 8px 8px rgba(0,0,0,0.5)");
+		}
+	}
 }
 
 /* @end */

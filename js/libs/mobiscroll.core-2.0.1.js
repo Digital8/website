@@ -158,7 +158,7 @@
         */
         that.scroll = function(t, val, time, orig, index) {
             var px = (m - val) * s.height;
-            t.attr('style', (time ? (prefix + '-transition:all ' + time.toFixed(1) + 's ease-out;') : '') + (has3d ? (prefix + '-transform:translate3d(' + px + 'px,0,0);') : ('left:' + px + 'px;')));
+            t.attr('style', (time ? (prefix + '-transition:all ' + time.toFixed(1) + 's ease-out;') : '') + (has3d ? (prefix + '-transform:translate3d(' + px + '%,0,0);') : ('left:' + px + '%;')));
 
             function getVal(t, b, c, d) {
                 return c * Math.sin(t/d * (Math.PI/2)) + b;
@@ -253,6 +253,8 @@
             // Create wheels containers
             var html = '<div class="profile-chooser dwwr">';
             
+            //html = '<div id="profile-info"><h2>Profile Info</h2></div>';
+            
             for (var i = 0; i < s.wheels.length; i++) {
                 html += '<table cellspacing="0" cellpadding="0"><tr>';
                 
@@ -284,7 +286,7 @@
             theme.init(dw, that);
 
             // Events
-            dw.delegate('.dwwl', 'DOMMouseScroll mousewheel', function (e) {
+            /*dw.delegate('.dwwl', 'DOMMouseScroll mousewheel', function (e) {
                 if (!s.readonly) {
                     e.preventDefault();
                     e = e.originalEvent;
@@ -295,7 +297,8 @@
                     setGlobals(t);
                     calc(t, val, delta < 0 ? 1 : 2);
                 }
-            }).delegate('.dwb, .dwwb', START_EVENT, function (e) {
+            })*/
+            dw.delegate('.dwb, .dwwb', START_EVENT, function (e) {
                 // Active button
                 $(this).addClass('dwb-a');
             }).delegate('.dwwb', START_EVENT, function (e) {
@@ -592,7 +595,7 @@
         if (move) {
             e.preventDefault();
             stop = getX(e);
-            var val = pos + (start - stop) / h;
+            var val = pos + (start - stop) / (h*8);
             val = val > (max + 1) ? (max + 1) : val;
             val = val < (min - 1) ? (min - 1) : val;
             inst.scroll(target, val);
@@ -604,7 +607,7 @@
             e.preventDefault();
             target.removeClass('dwa');
             var time = new Date() - startTime,
-                val = pos + (start - stop) / h;
+                val = pos + (start - stop) / (h*8);
             val = val > (max + 1) ? (max + 1) : val;
             val = val < (min - 1) ? (min - 1) : val;
 
@@ -616,7 +619,7 @@
             else {
                 var dist = stop - start;
             }
-            calc(target, Math.round(pos - dist / h), 0, true, Math.round(val));
+            calc(target, Math.round(pos - dist / (h*8)), 0, true, Math.round(val));
             move = false;
             target = null;
         }
